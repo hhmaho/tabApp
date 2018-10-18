@@ -15,12 +15,23 @@ function Tab({ title, tab, changeTab }) {
   </button>
 }
 
+function Tabs({ changeTab }) {
+  return <div>
+    <Tab title="Front" tab="home" changeTab={changeTab} />
+    <Tab title="About" tab="about" changeTab={changeTab} />
+  </div>
+}
+
 function HomeTab() {
   return <h1>inhoud van de homepage</h1>
 }
 
 function AboutTab() {
   return <h1>inhoud van de aboutpage</h1>
+}
+
+function ContactTab() {
+  return <h1>inhoud van de contactpagina</h1>
 }
 
 class App extends React.Component {
@@ -39,14 +50,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Tab title="Front" tab="home" changeTab={this.changeTab} />
-        <button onClick={() => {
-          this.setState({
-            activeTab: "about"
-          })
-        }}>About</button>
+        <Tabs changeTab={this.changeTab} />
         <Body activeTab={this.state.activeTab} />
-
       </div>
     );
   }
