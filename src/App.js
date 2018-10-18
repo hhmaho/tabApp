@@ -1,9 +1,13 @@
 import React from 'react';
 import './App.css';
 
-const Body = ({ activeTab }) => (
-  <h1>test</h1>
-)
+const Body = ({ activeTab }) => {
+  if (activeTab === "about") {
+    return <h1>about</h1> //
+  } else {
+    return <h1>home</h1>
+  }
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -24,8 +28,8 @@ class App extends React.Component {
             activeTab: "about"
           })
         }}>About</button>
-        <Body />
-        {this.state.activeTab}
+        <Body activeTab={this.state.activeTab} />
+        {/* {this.state.activeTab} */}
       </div>
     );
   }
