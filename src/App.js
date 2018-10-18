@@ -3,22 +3,23 @@ import './App.css';
 
 const Body = ({ activeTab }) => {
   if (activeTab === "about") {
-    return <AboutTab /> //
-  } else {
-    return <HomeTab />
-  }
+    return <AboutTab />
+  } else if (activeTab === "contact") {
+    return <ContactTab />
+  } else { return <HomeTab /> }
 }
 
-function Tab({ title, tab, changeTab }) {
+function Tab({ title, tab, changeTab, active }) {
   return <button onClick={() => changeTab(tab)}>
-    {title}
+    {title}{active ? "*" : ""}
   </button>
 }
 
-function Tabs({ changeTab }) {
+function Tabs({ changeTab, activeTab }) {
   return <div>
-    <Tab title="Front" tab="home" changeTab={changeTab} />
-    <Tab title="About" tab="about" changeTab={changeTab} />
+    <Tab title="Front" tab="home" changeTab={changeTab} active={activeTab === "home"} />
+    <Tab title="About" tab="about" changeTab={changeTab} active={activeTab === "about"} />
+    <Tab title="Contact us" tab="contact" changeTab={changeTab} active={activeTab === "contact"} />
   </div>
 }
 
@@ -50,7 +51,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Tabs changeTab={this.changeTab} />
+        <Tabs activeTab={this.state.activeTab} changeTab={this.changeTab} />
         <Body activeTab={this.state.activeTab} />
       </div>
     );
